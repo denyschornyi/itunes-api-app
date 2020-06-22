@@ -1,10 +1,8 @@
-import ItunesService from './service/itunes-service'
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-const data = new ItunesService();
+import Header from './components/header'
 
-data.getAlbums().then( albums => {
-  console.log(albums);
-  albums.forEach(album => {
-    console.log(album);
-  });
-});
+
+
+ReactDOM.render( <Header/> , document.querySelector('#root'));
