@@ -1,4 +1,4 @@
-export default class ItunesService{
+export default class Service{
     _apiUrl = 'https://itunes.apple.com/us/rss/topalbums/limit=100/json';
     async getData(url){
       const res = await fetch(url);

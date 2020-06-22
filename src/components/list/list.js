@@ -1,21 +1,51 @@
-import React from 'react';
+import React, { Suspense, Component } from 'react';
 
-import './list';
+import './list.css';
 
-import ItunesService from './service/itunes-service';
+import Service from '../../service/';
+import Item from '../item'
 
-const List = () => {
-    const data = new ItunesService();
+export default class List extends Component {
+
+    state = {
+        posts: [],
+    }   
     
-    data.getAlbums().then( albums => {
-      
-    });
+    
+    componentDidMount() {
+        const service = new Service();
+        service.getAlbums()
+            .then(res => {
+                this.setState ({
+                    posts: res
+                });
+            })
+    }
 
-    return ( 
-        <div className="list-group music-list">
-            
+    render() {
+        const loadingImg = <div className="album-img">
+          <img alt="loading" src="https://media.giphy.com/media/y1ZBcOGOOtlpC/200.gif" />
         </div>
-    )
+        
+        
+        const albums = this.state.posts.map(e => {
+          return (
+            <Suspense key={e.id.label} fallback={loadingImg}>
+              <Item
+                image={e["im:image"][2].label}
+                title={e.title.label}
+                link={e.id.label}
+                price={e["im:price"].label}
+                date={e["im:releaseDate"].label}
+              />
+            </Suspense>
+          );
+        });
+    
+        return (
+            <div className="albums">
+              {albums}
+            </div>
+        );
+      }
 }
-
-export default List;
