@@ -9,15 +9,18 @@ class ItunesApi{
     return await res.json();
   }
 
-  getMusicArray(){
-    return this.getData(this._apiUrl);
+  async getAlbums(){
+    const res = await this.getData(this._apiUrl);
+    return res.feed.entry;
   }
 
 }
 
 const data = new ItunesApi();
 
-data.getMusicArray().then( body => {
-  const musicArr = body.feed.entry;
-  console.log(musicArr);
+data.getAlbums().then( albums => {
+  console.log(albums);
+  albums.forEach(album => {
+    console.log(album);
+  });
 });
