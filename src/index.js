@@ -8,3 +8,6 @@ getData('https://itunes.apple.com/us/rss/topalbums/limit=100/json')
   .then(body => {
     console.log(body);
   })
+  .catch( (err) => {
+    console.error('Could not fetch', err);
+  })
