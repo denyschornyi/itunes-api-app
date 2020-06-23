@@ -4,14 +4,16 @@ import './list.css';
 
 import Service from '../../service/';
 import Item from '../item'
+import Header from '../header'
 
 export default class List extends Component {
 
     state = {
         posts: [],
+        term: ''
     }   
     
-    
+
     componentDidMount() {
         const service = new Service();
         service.getAlbums()
@@ -21,7 +23,10 @@ export default class List extends Component {
                 });
             })
     }
-
+    onSearchChange(term){
+        console.log(term);
+        this.setState( {term} );
+    }
     render() {
         const loadingImg = <div className="album-img">
           <img alt="loading" src="https://media.giphy.com/media/y1ZBcOGOOtlpC/200.gif" />
@@ -30,21 +35,29 @@ export default class List extends Component {
         
         const albums = this.state.posts.map(e => {
           return (
+              
             <Suspense key={e.id.label} fallback={loadingImg}>
               <Item
-                image={e["im:image"][2].label}
+                id={e.id.attributes['im:id']}
+                image={e["im:image"][0].label}
                 title={e.title.label}
                 link={e.id.label}
                 price={e["im:price"].label}
-                date={e["im:releaseDate"].label}
+                artist={e['im:artist'].label}
+                name={e['im:name'].label}
+                category={e.category}
+                releaseDate={e['im:releaseDate'].attributes.label}
               />
             </Suspense>
           );
         });
     
         return (
-            <div className="albums">
-              {albums}
+            <div className="container">
+                <Header  onSearchChange={this.onSearchChange} />
+                <div className="albums accordion" id="accordionExample">
+                    {albums}
+                </div>
             </div>
         );
       }

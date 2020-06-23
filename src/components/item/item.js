@@ -1,32 +1,52 @@
-import React, { Component } from 'react';
-// import LazyLoad from 'react-lazyload';
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-import './item.css';
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+  },
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    fontWeight: theme.typography.fontWeightRegular,
+  },
+}));
 
+export default function SimpleExpansionPanel({id, image, title, link, price, name, artist}) {
+  const classes = useStyles();
+  
+  return (
+    <div className={classes.root}>
+      <ExpansionPanel>
+        <ExpansionPanelSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Typography className={classes.heading}>
+              <div className='header'>
+                    <div className="header__rank"></div>
+                    <img src={image} alt={title} className="header__img"/>
+                    <div className="header__album">
+                        <div className="header__name">{name}</div>
+                        <div className="header__artist">{artist}</div>
+                    </div>
+              </div>
+          </Typography>
+        </ExpansionPanelSummary>
 
-export default class Item extends Component{
-    render(){
-
-        const {link, image, title, price} = this.props;
-        
-        return(
-            
-            <div className="album">
-
-                <div className="album-item">
-                    <a href={link} target="blank" className="link">
-                        <div height={200} >
-                            <img className="album-img" src={image} alt={'itunes' + Math.random()} />
-                        </div>
-                    </a>
-                </div>
-
-                <div className="title album-item">
-                    <a href={link} target="blank" className="link">
-                        {title.slice(0, 20)}..</a></div>
-                <div className="price album-item">Price:{price}</div>
-
-             </div>
-        )
-    }
+        <ExpansionPanelDetails>
+          <Typography>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+            sit amet blandit leo lobortis eget.
+          </Typography>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+      
+    </div>
+  );
 }
