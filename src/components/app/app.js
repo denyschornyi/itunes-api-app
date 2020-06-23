@@ -9,7 +9,7 @@ import './app.css';
 const App = () => {
     return (
         <div>
-            <List />
+            <List  />
         </div>
     )
 }

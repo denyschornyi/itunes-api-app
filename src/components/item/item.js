@@ -6,6 +6,8 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
+import './item.css'
+
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
@@ -16,11 +18,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SimpleExpansionPanel({id, image, title, link, price, name, artist}) {
+export default function SimpleExpansionPanel({id, image, title, link, price, name, artist, category, releaseDate}) {
   const classes = useStyles();
   
   return (
-    <div className={classes.root}>
+    <div className="item">
       <ExpansionPanel>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
@@ -32,8 +34,8 @@ export default function SimpleExpansionPanel({id, image, title, link, price, nam
                     <div className="header__rank"></div>
                     <img src={image} alt={title} className="header__img"/>
                     <div className="header__album">
-                        <div className="header__name">{name}</div>
-                        <div className="header__artist">{artist}</div>
+                        <h2 className="header__name">{name}</h2>
+                        <h3 className="header__artist">{artist}</h3>
                     </div>
               </div>
           </Typography>

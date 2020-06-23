@@ -39,7 +39,7 @@ export default class List extends Component {
             <Suspense key={e.id.label} fallback={loadingImg}>
               <Item
                 id={e.id.attributes['im:id']}
-                image={e["im:image"][0].label}
+                image={e["im:image"][1].label}
                 title={e.title.label}
                 link={e.id.label}
                 price={e["im:price"].label}
@@ -55,7 +55,7 @@ export default class List extends Component {
         return (
             <div className="container">
                 <Header  onSearchChange={this.onSearchChange} />
-                <div className="albums accordion" id="accordionExample">
+                <div className="albums accordion container" id="accordionExample">
                     {albums}
                 </div>
             </div>
