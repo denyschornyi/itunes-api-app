@@ -1,16 +1,47 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import './AlbumList.css';
 
 import AlbumItem from '../AlbumItem';
 
-const AlbumList = () => {
-    return (
-        <>
-            <h1>AlbumList</h1>
-            <AlbumItem />
-        </>
-    );
-}
+export default class AlbumList extends Component {
 
-export default AlbumList;
+    state = {
+        albumList: null
+    }
+
+    componentDidMount(){
+        const { getData } = this.props;
+        getData()
+            .then(albumList => {
+                this.setState({albumList: albumList})    
+            });
+    }
+
+    renderItem(arr){
+        return arr.map( (item, index) => {
+
+            const {id, img, artistName, albumName, releaseDate, price} = item
+            return <AlbumItem key={id} 
+                        index={index}
+                        id={id}
+                        img={img} 
+                        artistName={artistName}
+                        albumName={albumName}
+                        releaseDate={releaseDate}
+                        price={price} />
+        });
+    }
+
+    render(){
+        const { albumList } = this.state;
+        
+        const data = albumList ? this.renderItem(albumList) : null;
+
+        return (
+            <>
+               {data}
+            </>
+        );
+    }
+}

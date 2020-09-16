@@ -7,11 +7,11 @@ import AlbumList from '../AlbumList'
 
 const App = () => {
     const itunesService = new ItunesService();
-    
+
     return (
         <>
             <h1>hey</h1>
-            <AlbumList/>
+            <AlbumList getData={itunesService.getAlbums}/>
         </>
     )
 }
