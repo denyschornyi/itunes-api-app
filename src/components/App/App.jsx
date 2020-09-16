@@ -1,13 +1,18 @@
 import React from 'react';
 
+import './App.css';
+
 import ItunesService from '../../service/ItunesService'
+import AlbumList from '../AlbumList'
 
 const App = () => {
     const itunesService = new ItunesService();
-    itunesService.getAlbums()
-            .then(albums => console.log(albums))
+    
     return (
-        <h1>hey</h1>
+        <>
+            <h1>hey</h1>
+            <AlbumList/>
+        </>
     )
 }
 
