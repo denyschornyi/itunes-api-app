@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import './AlbumList.css';
 
+import Spinner from '../Spinner';
 import AlbumItem from '../AlbumItem';
 
 export default class AlbumList extends Component {
@@ -35,8 +36,12 @@ export default class AlbumList extends Component {
 
     render(){
         const { albumList } = this.state;
+
+        if(!albumList){
+            return <Spinner/>
+        }
         
-        const data = albumList ? this.renderItem(albumList) : null;
+        const data = this.renderItem(albumList);
 
         return (
             <>
