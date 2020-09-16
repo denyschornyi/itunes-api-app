@@ -44,9 +44,9 @@ export default class AlbumList extends Component {
         const data = this.renderItem(albumList);
 
         return (
-            <>
+            <div className='albumList'>
                {data}
-            </>
+            </div>
         );
     }
 }

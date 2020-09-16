@@ -1,0 +1,20 @@
+.albumItem{
+    display: flex;
+    margin: auto;
+    margin-top: 2rem;
+    border-radius: 18px;
+    overflow: hidden;
+    width: 60%;
+
+    -webkit-box-shadow: 2px 6px 7px -5px rgba(0,0,0,0.54);
+-moz-box-shadow: 2px 6px 7px -5px rgba(0,0,0,0.54);
+box-shadow: 2px 6px 7px -5px rgba(0,0,0,0.54);
+}
+
+.albumItem img{
+  width: 20%;  
+}
+
+.albumItem-body{
+    padding: 1rem;
+}

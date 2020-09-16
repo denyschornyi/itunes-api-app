@@ -4,13 +4,15 @@ import './AlbumItem.css';
 
 const AlbumItem = ({index, id, img, artistName, albumName, releaseDate, price}) => {
     return (
-        <li>
+        <div className='albumItem'>
             <img src={img} alt="img"/>
-            <div>{artistName}</div>
-            <div>{albumName}</div>
-            <div>{releaseDate}</div>
-            <div>{price}</div>
-        </li>
+            <div className="albumItem-body">
+                <div>{artistName}</div>
+                <div>{albumName}</div>
+                <div>{releaseDate}</div>
+                <div>{price}</div>
+            </div>
+        </div>
     );
 }
 

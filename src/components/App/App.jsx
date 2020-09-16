@@ -10,8 +10,9 @@ const App = () => {
 
     return (
         <>
-            <h1>hey</h1>
-            <AlbumList getData={itunesService.getAlbums}/>
+            <div className="container">
+                <AlbumList getData={itunesService.getAlbums}/>
+            </div>
         </>
     )
 }
