@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import './App.css';
 
@@ -6,17 +6,21 @@ import ItunesService from '../../service/ItunesService'
 import AlbumList from '../AlbumList'
 import SearchInput from '../SearchInput'
 
-const App = () => {
-    const itunesService = new ItunesService();
+export default class App extends Component {
+    itunesService = new ItunesService();
 
-    return (
-        <>
-            <div className="container">
-                <SearchInput />
-                <AlbumList getData={itunesService.getAlbums}/>
-            </div>
-        </>
-    )
-}
+    onSearchChange(term){
+        console.log(term);
+    }
 
-export default App;
+    render(){
+        return (
+            <>
+                <div className="container">
+                    <SearchInput onSearchChange={this.onSearchChange}/>
+                    <AlbumList getData={this.itunesService.getAlbums}/>
+                </div>
+            </>
+        )
+    }    
+} 
