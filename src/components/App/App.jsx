@@ -4,6 +4,7 @@ import './App.css';
 
 import ItunesService from '../../service/ItunesService'
 import AlbumList from '../AlbumList'
+import SearchInput from '../SearchInput'
 
 const App = () => {
     const itunesService = new ItunesService();
@@ -11,6 +12,7 @@ const App = () => {
     return (
         <>
             <div className="container">
+                <SearchInput />
                 <AlbumList getData={itunesService.getAlbums}/>
             </div>
         </>

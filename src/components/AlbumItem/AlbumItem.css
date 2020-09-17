@@ -8,6 +8,7 @@
     -moz-box-shadow: 2px 6px 7px -5px rgba(0,0,0,0.54);
     box-shadow: 2px 6px 7px -5px rgba(0,0,0,0.54);
     position: relative;
+    cursor: pointer;
 }
 .albumItem img{
     width: 30%;  
