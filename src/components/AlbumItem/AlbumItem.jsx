@@ -2,13 +2,15 @@ import React from 'react';
 
 import './AlbumItem.css';
 
-const AlbumItem = ({index, id, img, artistName, albumName, releaseDate, price}) => {
+const AlbumItem = ({index, img, artistName, albumName, releaseDate, price}) => {
+
     return (
         <div className='albumItem'>
+            <div className="index">{index+1}</div>
             <img src={img} alt="img"/>
             <div className="albumItem-body">
-                <div>{artistName}</div>
-                <div>{albumName}</div>
+                <div className="album-name">{albumName}</div>
+                <div className="artist-name">{artistName}</div>
                 <div>{releaseDate}</div>
                 <div>{price}</div>
             </div>

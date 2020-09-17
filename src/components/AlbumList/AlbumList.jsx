@@ -8,14 +8,15 @@ import AlbumItem from '../AlbumItem';
 export default class AlbumList extends Component {
 
     state = {
-        albumList: null
+        albumList: null,
+        loadig: true
     }
 
     componentDidMount(){
         const { getData } = this.props;
         getData()
             .then(albumList => {
-                this.setState({albumList: albumList})    
+                this.setState({albumList, loadig: false})    
             });
     }
 
@@ -36,16 +37,10 @@ export default class AlbumList extends Component {
 
     render(){
         const { albumList } = this.state;
-
-        if(!albumList){
-            return <Spinner/>
-        }
         
-        const data = this.renderItem(albumList);
-
         return (
             <div className='albumList'>
-               {data}
+               {albumList ? this.renderItem(albumList) : <Spinner/>}
             </div>
         );
     }
