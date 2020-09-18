@@ -6,7 +6,6 @@ const AlbumItem = ({index, img, artistName, albumName, releaseDate, price}) => {
 
     return (
         <div className='albumItem'>
-            <div className="index">{index+1}</div>
             <img src={img} alt="img"/>
             <div className="albumItem-body">
                 <div className="album-name">{albumName}</div>

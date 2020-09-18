@@ -13,7 +13,6 @@ export default class AlbumList extends Component {
 
             const {id, img, artistName, albumName, releaseDate, price} = item
             return <AlbumItem key={id} 
-                        index={index}
                         id={id}
                         img={img} 
                         artistName={artistName}
