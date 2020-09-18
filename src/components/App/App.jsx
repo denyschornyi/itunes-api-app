@@ -11,7 +11,8 @@ export default class App extends Component {
     itunesService = new ItunesService();
 
     state = {
-        albumList: null
+        albumList: null,
+        term: ''
     }
 
     componentDidMount(){
@@ -22,14 +23,25 @@ export default class App extends Component {
     }
     
     onSearchChange = (term) => {
-        console.log(term);
+        this.setState({term});
+    }
+
+    onAvalibleData(albumList, term){
+        if(term.trim().length === 0){
+            return albumList;
+        }
+        return albumList.filter(el => el.title.toLowerCase().indexOf(term) > -1)
     }
 
     render(){
+        const {albumList, term} = this.state;
+        
+        const visibleData = this.onAvalibleData(albumList, term);
+        console.log(albumList);
         return (
             <div className="container">
                     <SearchInput onSearchChange={this.onSearchChange}/>
-                    <AlbumList data={this.state.albumList}/>
+                    <AlbumList data={visibleData}/>
             </div>
         )
     }    
