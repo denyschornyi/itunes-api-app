@@ -7,20 +7,30 @@ import AlbumList from '../AlbumList'
 import SearchInput from '../SearchInput'
 
 export default class App extends Component {
+
     itunesService = new ItunesService();
 
-    onSearchChange(term){
+    state = {
+        albumList: null
+    }
+
+    componentDidMount(){
+        this.itunesService.getAlbums()
+        .then(albumList => {
+            this.setState({albumList})   
+        });
+    }
+    
+    onSearchChange = (term) => {
         console.log(term);
     }
 
     render(){
         return (
-            <>
-                <div className="container">
+            <div className="container">
                     <SearchInput onSearchChange={this.onSearchChange}/>
-                    <AlbumList getData={this.itunesService.getAlbums}/>
-                </div>
-            </>
+                    <AlbumList data={this.state.albumList}/>
+            </div>
         )
     }    
 } 
